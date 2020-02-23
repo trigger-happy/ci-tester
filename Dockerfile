@@ -6,7 +6,7 @@ RUN dnf -y update
 
 
 # image for building and creating a basic build environment
-FROM base as builder
+FROM base as build-env
 
 RUN dnf -y install \
     cmake \
@@ -32,13 +32,14 @@ ARG STATIC_BUILD=ON
 
 COPY . .
 
-RUN mkdir -p build && \
-    cd build && \
-    scan-build cmake .. -G Ninja -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_INSTALL_PREFIX=/app -DSTATIC_BUILD=$STATIC_BUILD && \
-    scan-build ninja && \
-    ninja install
-
 CMD ["/bin/bash"]
+
+
+
+FROM build-env as build
+
+RUN scripts/build.sh /app
+
 
 
 
