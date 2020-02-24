@@ -13,3 +13,5 @@ Doxyfile~
 *.kate-swp
 *.swp
 .ccls-cache
+.ccls
+compile_commands.json
