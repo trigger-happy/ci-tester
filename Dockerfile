@@ -19,16 +19,12 @@ RUN dnf -y install \
     libstdc++-devel \
     glibc-static \
     glibc-devel \
-    make
+    make \
+    llvm
 
 RUN mkdir -p /app && chown builder:builder /app
 USER builder
 WORKDIR /home/builder
-
-ARG BUILD_TYPE=Debug
-ARG CC=clang
-ARG CXX=clang++
-ARG STATIC_BUILD=ON
 
 COPY . .
 
