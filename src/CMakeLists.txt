@@ -32,3 +32,30 @@ install(
   DESTINATION "bin/"
 )
 
+if(CLANG_TIDY)
+  add_custom_target(
+    ${TARGETNAME}_clang_tidy
+    COMMAND ${CLANG_TIDY}
+    ${SRC_FILES}
+    --
+    -std=c++17
+  )
+
+  add_dependencies(
+    ${TARGETNAME}
+    ${TARGETNAME}_clang_tidy
+  )
+endif()
+
+if(CLANG_FORMAT)
+  add_custom_target(
+    ${TARGETNAME}_clang_format
+    COMMAND ${CLANG_FORMAT}
+    -i ${SRC_FILES}
+  )
+
+  add_dependencies(
+    ${TARGETNAME}
+    ${TARGETNAME}_clang_format
+  )
+endif()
