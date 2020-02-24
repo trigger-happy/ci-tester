@@ -9,18 +9,22 @@ RUN dnf -y update
 FROM base as build-env
 
 RUN dnf -y install \
-    cmake \
-    clang-libs \
-    clang-tools-extra \
-    clang-analyzer \
-    clang \
-    ninja-build \
-    libstdc++-static \
-    libstdc++-devel \
-    glibc-static \
-    glibc-devel \
-    make \
-    llvm
+      cmake \
+      clang-libs \
+      clang-tools-extra \
+      clang-analyzer \
+      clang \
+      ninja-build \
+      libstdc++-static \
+      libstdc++-devel \
+      glibc-static \
+      glibc-devel \
+      make \
+      llvm \
+      cargo && \
+    cargo install grcov && \
+    mv /root/.cargo/bin/grcov /usr/bin/grcov && \
+    chmod a+rx /usr/bin/grcov
 
 RUN mkdir -p /app && chown builder:builder /app
 USER builder

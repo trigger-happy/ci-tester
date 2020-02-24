@@ -41,5 +41,5 @@ option(CLANG_CODE_COVERAGE "Enable code coverage metrics in Clang" OFF)
 if (CLANG_CODE_COVERAGE)
     message(STATUS "Code coverage metrics enabled for debug build")
     set(CMAKE_CXX_FLAGS_DEBUG
-        "${CMAKE_CXX_FLAGS_DEBUG} -fprofile-instr-generate -fcoverage-mapping")
+        "${CMAKE_CXX_FLAGS_DEBUG} --coverage")
 endif ()
