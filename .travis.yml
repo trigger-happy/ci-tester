@@ -9,3 +9,5 @@ before_install:
 script:
   - mkdir -p app; chmod a+rwX app
   - docker run --rm -v $(pwd)/app:/app $DOCKER_USERNAME/ci-tester:build-env bash -c "scripts/build.sh /app"
+  - docker run --rm -v $(pwd)/app:/app $DOCKER_USERNAME/ci-tester:build-env bash -c "scripts/coverage_report.sh /app"
+  - bash <(curl -s https://codecov.io/bash) -f app/coverage.txt || echo "Unable to collect coverage report"
