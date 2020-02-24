@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED)
 set(CMAKE_EXPORT_COMPILE_COMMANDS "ON")
 
 option(STATIC_BUILD "Build static libs and executables" "OFF")
+option(ENABLE_CLANG_TIDY "Run clang-tidy against all source files included in the build" "OFF")
+option(ENABLE_CLANG_FORMAT "Run clang-format against all source files included in the build" "OFF")
 
 enable_testing()
 

@@ -32,7 +32,7 @@ install(
   DESTINATION "bin/"
 )
 
-if(CLANG_TIDY)
+if(CLANG_TIDY AND ENABLE_CLANG_TIDY)
   add_custom_target(
     ${TARGETNAME}_clang_tidy
     COMMAND ${CLANG_TIDY}
@@ -47,7 +47,7 @@ if(CLANG_TIDY)
   )
 endif()
 
-if(CLANG_FORMAT)
+if(CLANG_FORMAT AND ENABLE_CLANG_FORMAT)
   add_custom_target(
     ${TARGETNAME}_clang_format
     COMMAND ${CLANG_FORMAT}
