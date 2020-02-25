@@ -41,7 +41,7 @@ if(CLANG_TIDY AND ENABLE_CLANG_TIDY)
   )
 
   add_dependencies(
-    ${TARGETNAME}
+    all-tidy
     ${TARGETNAME}_clang_tidy
   )
 endif()
@@ -54,7 +54,7 @@ if(CLANG_FORMAT AND ENABLE_CLANG_FORMAT)
   )
 
   add_dependencies(
-    ${TARGETNAME}
+    all-format
     ${TARGETNAME}_clang_format
   )
 endif()
