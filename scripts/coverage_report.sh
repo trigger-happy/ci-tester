@@ -5,7 +5,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 mkdir -p build && \
     cd build && \
-    cmake .. -G Ninja -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCLANG_CODE_COVERAGE=ON && \
-    ninja && \
-    bin/ci-tester > /dev/null 2> /dev/null && \
-    grcov --llvm . -t coveralls --token unused --commit-sha unused > $1/coverage.json
+    cmake .. -DCMAKE_BUILD_TYPE=Debug -DCLANG_CODE_COVERAGE=ON && \
+    make && \
+    src/ci-tester/ci-tester > /dev/null 2> /dev/null && \
+    grcov --llvm . -t coveralls+ --token unused --commit-sha unused > $1/coverage.json
