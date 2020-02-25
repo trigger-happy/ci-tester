@@ -1,8 +1,6 @@
 #include <iostream>
 
-using namespace std;
-
-int main(int argc, char **argv) {
-  cout << "Testing" << endl;
+auto main(int /*argc*/, char * * /*argv*/) -> int {
+  std::cout << "Testing" << std::endl;
   return 0;
 }
