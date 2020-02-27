@@ -8,7 +8,7 @@ before_script:
 
 script:
   - docker run --rm -v $(pwd)/app:/app -v $(pwd):/src triggerhappy/cppdev:latest bash
-    -c "scripts/build.sh /app"
+    -c "scripts/build.sh /app && scripts/make_changelog.sh"
   - tar cJf ci-tester.tar.xz app
   - sudo rm -rf build/*
   - docker run --rm -v $(pwd)/coverage_report:/app -v $(pwd):/src triggerhappy/cppdev:latest
@@ -23,5 +23,5 @@ deploy:
     secure: CcUvOE3lKri53LeWmeTjYylHl7lQYLpcjHy1Pu+uxuE0XKH9nh8z3Uk9QJm9LflIJGj6le7L65kTA0rZECgO+0CBCTgRQkjOQywW9SRcWKz0lL2NcC8ll2P9sZ18w1l4t/seXsvXiAl3sMdpMIu8PNopaepVlaQl9LeMljbFmZ4757g5psjhCmlcQTzasK7PKwSYQoPiWuAFqZlM+galx73oRZopyomf8rqcYylCtnHVDJcNlchbjN2YiasUjsrnonRzYQ6uRw3tzWfOS7qSYn0WoumyCFV/9/0P3LEqqk+kPoA1tzHtnW8xBskYaCrcsrPZnWfoWi850dK/Ed2T7PeI94fzXNTiP1dn/U2ZzkDeUwj6bgBCgHHostyMwl2p/XldMKVKPxSLSFZL/xf3+B1fSOpUlHvo60X7+kxIKD866AZ7eJ1zkStpnbgB7CmbPnObHGzC2uT5geFFrDufb20irXiDg1b1mqYk+2FoptiIE1nCx1UWQsPJUXY23bsH0N96+4Ny4CfoHzI6P1UPN9AQLnYM/C/UZ1zjEfJKR2x+nTGusotp9PfDA5bWwwUme/MybrBpH+kB8Mq0WNfWtA110AtG1vGYDUssHpSCZeefWe2VK5LaQlQ9Ms7ZX9YaeuHo/66r2omF1VWI7xWd0nNrQHUFrbyG4IamAqMzUlE=
   file: ci-tester.tar.xz
   on:
-    tags: true
+    tags: false
     repo: trigger-happy/ci-tester
