@@ -4,7 +4,8 @@ services:
   - docker
 
 before_script:
-  - mkdir -p build app coverage_report; chmod a+rwX build app coverage_report
+  - mkdir -p build app coverage_report
+  - chmod a+rwX -R .
 
 script:
   - docker run --rm -v $(pwd)/app:/app -v $(pwd):/src triggerhappy/cppdev:latest bash -c "scripts/build.sh /app"
