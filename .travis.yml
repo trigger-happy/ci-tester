@@ -3,11 +3,12 @@ language: cpp
 services:
   - docker
 
-before_install:
-  - docker build . --target build-env -t $DOCKER_USERNAME/ci-tester:build-env
+before_script:
+  - mkdir -p app coverage_report; chmod a+rwX app coverage_report
 
 script:
-  - mkdir -p app; chmod a+rwX app
-  - docker run --rm -v $(pwd)/app:/app $DOCKER_USERNAME/ci-tester:build-env bash -c "scripts/build.sh /app"
-  - docker run --rm -v $(pwd)/app:/app $DOCKER_USERNAME/ci-tester:build-env bash -c "scripts/coverage_report.sh /app"
-  - bash <(curl -s https://codecov.io/bash) -f app/coverage.json || echo "Unable to collect coverage report"
+  - docker run --rm -v $(pwd)/app:/app -v $(pwd):/src triggerhappy/cppdev:latest bash -c "scripts/build.sh /app"
+  - tar cJf ci-tester.tar.xz app
+
+  - docker run --rm -v $(pwd)/coverage_report:/app -v $(pwd):/src triggerhappy/cppdev:latest bash -c "scripts/coverage_report.sh /app"
+  - bash <(curl -s https://codecov.io/bash) -f coverage_report/coverage.json
