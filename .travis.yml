@@ -19,5 +19,3 @@ deploy:
   edge: true
   provider: releases
   file: ci-tester.tar.xz
-  on:
-    tags: true
