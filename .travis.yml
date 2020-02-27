@@ -17,6 +17,7 @@ script:
 deploy:
   cleanup: false
   edge: true
+  token: $GITHUB_TOKEN
   provider: releases
   file: ci-tester.tar.xz
   on:
