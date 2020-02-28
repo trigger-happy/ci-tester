@@ -17,7 +17,7 @@ script:
   - bash <(curl -s https://codecov.io/bash) -f coverage_report/coverage.json
 
   - PREVIOUS_TAG=$(git describe --abbrev=0 --tags `git rev-list --tags --skip=1 --max-count=1`)
-  - PREVIOUS_TAG_COMMIT=$(git rev-list -n $PREVIOUS_TAG)
+  - PREVIOUS_TAG_COMMIT=$(git rev-list -n 1 $PREVIOUS_TAG)
   - docker run -v `pwd`:/src --rm -i triggerhappy/auto-changelog:latest auto-changelog $PREVIOUS_TAG_COMMIT
   - cat CHANGELOG.md
 
