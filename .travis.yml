@@ -18,6 +18,9 @@ script:
   - cat CHANGELOG.md
 
 deploy:
+  draft: false
+  release_notes_file: CHANGELOG.md
+  tag_name: $TRAVIS_TAG
   cleanup: false
   edge: true
   provider: releases
