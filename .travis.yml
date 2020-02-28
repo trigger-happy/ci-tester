@@ -19,7 +19,6 @@ script:
   - PREVIOUS_TAG=$(git describe --abbrev=0 --tags `git rev-list --tags --skip=1 --max-count=1`)
   - STARTING_COMMIT=$(git log --pretty="%h" $PREVIOUS_TAG..HEAD | awk '/./{line=$0} END{print line}')
   - docker run -v `pwd`:/src --rm -i triggerhappy/auto-changelog:latest auto-changelog --starting-commit=$STARTING_COMMIT
-  - cat CHANGELOG.md
 
 deploy:
   draft: false
